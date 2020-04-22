@@ -1,0 +1,31 @@
+import random
+randnum=[*range(0,21)]
+def init():
+    randgen = random.choice(randnum)
+    gussnum = int(input("number of guess"))
+    userinput = int(input("guess the number:"))
+    numofguess= 0
+    return randgen,gussnum,userinput,numofguess
+def val(userinput,gussnum,numofguess,randgen):
+    while(numofguess<gussnum-1):
+        if randgen==userinput:
+            print("u are crct")
+            break
+        elif randgen<userinput:
+            print("try again guess lower than this:")
+            numofguess =numofguess+1
+            userinput=int(input())
+        elif randgen>userinput:
+            print("try again guess higher than this:")
+            numofguess = numofguess+ 1
+            userinput=int(input())
+    again = int(input("to try again press 1 or 0 to exit"))
+    if again == 1:
+        tot()
+    else:
+        print("exiting....")
+def tot():
+    randgen,gussnum,userinput,numofguess=init()
+    val(userinput,gussnum,numofguess,randgen)
+print("lets start the game ")
+tot()
