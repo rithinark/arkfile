@@ -1,0 +1,16 @@
+x=int(input())
+ins=input().split()
+l=sorted([int(x) for x in ins])
+def mean(a,b):
+    return sum(b)/a
+def median(a,b):
+    b=list(b)
+    if len(b)%2==0:
+        return (b[(a // 2) - 1] + b[a // 2]) / 2
+    else:
+        return b[(a-1)//2]
+def mode(b):
+    return max(set(b),key=b.count)
+print(mean(x,l))
+print(median(x,l))
+print(mode(l))
