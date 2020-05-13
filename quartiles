@@ -1,0 +1,25 @@
+n=int(input())
+ins=list(map(int,input().split()))
+l=sorted(ins)
+def median(a,b):
+    if len(b)%2==0:
+        return (b[(a // 2) - 1] + b[a // 2]) / 2
+    else:
+        return b[(a - 1) // 2]
+def split(data,bound):
+    if len(data)%2==0:
+        l1=data[:int(len(data)/2)]
+        l2=data[int(len(data)/2):]
+    else:
+        l1 = data[:int(len(data) / 2)]
+        l2 = data[int(len(data) / 2)+1:]
+    if bound=='upper':return l1
+    if bound=='lower':return l2
+
+q1=median(len(split(l,'upper')),split(l,'upper'))
+q2=median(n,l)
+q3=median(len(split(l,'lower')),split(l,'lower'))
+
+print(int(q1))
+print(int(q2))
+print(int(q3))
