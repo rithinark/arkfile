@@ -1,0 +1,13 @@
+import math
+def mean(a,b):
+    return sum(b)/a
+def variance(data_set,mean,n):
+    ans=0
+    for i in range(n):
+        ans=ans+pow(data_set[i]-mean,2)
+    return ans/n
+def standard_deviation(variance):
+    return math.sqrt(variance)
+n=5
+l=[10,40,30,50,20]
+print('%.1f'%standard_deviation(variance(l,mean(n,l),n)))
