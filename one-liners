@@ -3,11 +3,11 @@
 #2 to find area of circle
 (lambda r:print("area of circle with radius",r,"=",__import__("math").pi*r**2))(int(input("enter radius to find area of circle:")))
 #3 to print all prime numbers between intervals
-(lambda y,x: print([i for i in range(y,x) if (lambda x:True if len([False for i in range(2,x)if x%i==0])==0 else False)(i)==True]))(int(input("enter start point:"))\
+(lambda y,x: print([i for i in range(y,x) if (lambda x:True if len([False for i in range(2,x)if x%i==0])==0 x!=1  else False)(i)==True]))(int(input("enter start point:"))\
                                                                         ,int(input("enter end point:"))
                                                                         
 #4 to check whether a number is prime or not
-(lambda x:True if len([False for i in range(2,x) if x%i==0])==0 else False)(int(input("enter a num:")))      
+(lambda x:True if len([False for i in range(2,x) if x%i==0])==0 and x!=1 else False)(int(input("enter a num:")))      
 
 #5 to find nth fibonaci number
 #note: i used Binets Formula so i can do it in single line
