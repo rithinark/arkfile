@@ -29,5 +29,5 @@ print("multiply of",x:= int(input("enter a number:")),":\n", *((str(i)+"x"+str(x
 i in range(1,11)))
 #another aproach for 3.7 and lower version
 (lambda x:print("multiply of",x,":\n", *((str(i)+"x"+str(x)+"="+str(i*x)+"\n") for i in
-range(1,11))))(int(input("enter a n
+range(1,11))))(int(input("enter a number:")))
 
