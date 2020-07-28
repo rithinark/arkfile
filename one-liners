@@ -12,3 +12,22 @@
 #5 to find nth fibonaci number
 #note: i used Binets Formula so i can do it in single line
 (lambda n:print(int((((1+5**0.5)/2)**(n-1)-((1-5**0.5)/2)**(n-1))/5**0.5)))(int(input("enter number to find nth fibonaci:")))
+
+#assessment 1 python program to solve quadratic equation
+(lambda a,b,c,sqrt=__import__('cmath').sqrt:(print((-b - sqrt(b ** 2 - 4 * a * c)) / 2 * a,(-b + sqrt(b ** 2 - 4 * a *
+c)) / 2 * a)))(*(map(int,input().split())))
+#assessment 2 to find sqaure root
+print(__import__('math').sqrt(int(input("enter a number:"))))
+#assessment 3 to find leap year
+(lambda x: print("leap year") if x % 4 == 0 and x % 100 != 0 or x % 400 == 0 else print("not a leap
+year"))(int(input("enter a year:")))
+#assessment 4 to find greates among 3 number
+print(max(*[map(int,input().split())]))
+#assessment 5 to display multiplication table
+#only possible in python 3.8 or higher version
+print("multiply of",x:= int(input("enter a number:")),":\n", *((str(i)+"x"+str(x)+"="+str(i*x)+"\n") for
+i in range(1,11)))
+#another aproach for 3.7 and lower version
+(lambda x:print("multiply of",x,":\n", *((str(i)+"x"+str(x)+"="+str(i*x)+"\n") for i in
+range(1,11))))(int(input("enter a n
+
