@@ -1,38 +1,32 @@
 import java.sql.*;
 public class dbmysqltut{
     public static void main(String[] args) {
-        Bank bank= new Bank();
-        //bank.connect();
-
-
-
+         Bank bank=new Bank();
+         bank.connect("bank");
+         //bank.createTable();
+        //bank.createAccount("user1",1001);
+        //bank.createAccount("user2",1002);
+        //bank.deposit(1001,4_00_000);
+        //bank.withdraw(1001,3_00_000);
+        bank.deleteAccount(1002);
+        
     }
 }
 
 //bank account
 class Bank {
     //establishing connection
-    Connection con= null;
+    Connection con= null; //instance variable
     void connect(String database){
-    String url = "jdbc:mysql://localhost:3306/"+database;
-
-    try{
-        con = DriverManager.getConnection(url, "root", "password");
-        System.out.println("successfully connect");
-    }catch(SQLException ex)
-    {
-        System.out.println(ex.getMessage());
-        try {
-            Connection con = DriverManager.getConnection(url, "root", "password");
-            Statement stmt = con.createStatement();
-            stmt.execute("CREATE DATABASE "+database);
-            connect(database);
-
-        }catch(SQLException ee){
-            System.out.println(ee.getMessage());
+        String url = "jdbc:mysql://localhost:3306/";
+        try{
+            con = DriverManager.getConnection(url+database, "root", "password");
+            System.out.println("successfully connect");
+        }catch(SQLException ex)
+        {
+            System.out.println(ex.getMessage());
         }
     }
-}
 
     //create table
     void createTable(){
@@ -43,7 +37,6 @@ class Bank {
         try(Statement stmt =con.createStatement()){
             stmt.execute(data);
             System.out.println("successfully table created");
-
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
@@ -85,12 +78,45 @@ class Bank {
 
 
     //withdraw
+    void withdraw(int id,int amount){
+        String data="UPDATE  account SET balance=? WHERE id=?";
+        String get="SELECT balance FROM account WHERE id=?";
+        try(PreparedStatement stmt = con.prepareStatement(data);
+            PreparedStatement stmt2= con.prepareStatement(get)){
+            stmt2.setInt(1,id);
+            ResultSet rs= stmt2.executeQuery();
+            rs.next();
+            int existbalance= rs.getInt("balance");
+            if(existbalance>amount){
+            stmt.setInt(1,existbalance-amount);
+            stmt.setInt(2,id);
+            stmt.executeUpdate();}
+            else{
+                System.err.println("your existing balance is lower than ur withdrawal amount");
+            }
+            System.out.println("Suscessfull");
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 
-    //getCurrentBalance
 
-    //getAccounts
+
 
     //deleteAccount
+    void deleteAccount(int id){
+        String data="DELETE FROM account WHERE id=?";
+        try(PreparedStatement pstmt= con.prepareStatement(data)){
+            pstmt.setInt(1,id);
+            if(pstmt.executeUpdate()==1){
+                System.out.println("account deleted succesfully");
+            }
+            else
+                System.out.println("account not found");
+        }catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 
 
 }
