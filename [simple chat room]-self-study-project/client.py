@@ -14,7 +14,7 @@ class ChatRoom(QMainWindow):
         self.row=1
         self.join_layout()
         self.HEADER = 64
-        self.PORT = 5050
+        self.PORT = 5050#port=============================
         self.FORMAT = 'utf-8'
         self.DISCONNECT_MESSAGE = "!DISCONNECT"
 
@@ -179,10 +179,10 @@ class ChatRoom(QMainWindow):
             self.name=self.nameInput.text()
             self.SERVER=self.codeInput.text()
             self.ADDR = (self.SERVER, self.PORT)
-            try:
-                self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            except:
-                self.client = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+
+            #self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)===================================for ip version 4==================================
+
+            self.client = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)#=================================for ip version 6=====================================
             self.client.connect(self.ADDR)
 
             self.send(self.name)#==================================================================================
